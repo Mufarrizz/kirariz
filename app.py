@@ -1,8 +1,5 @@
 import streamlit as st
 import requests
-from gtts import gTTS
-from playsound import playsound
-import os
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
@@ -10,6 +7,8 @@ st.set_page_config(
     page_icon="🌍",
     layout="centered"
 )
+
+# -------------------- BACKGROUND COLOR --------------------
 st.markdown(
     """
     <style>
@@ -21,7 +20,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # -------------------- SESSION STATE --------------------
 if "translated_text" not in st.session_state:
     st.session_state.translated_text = ""
@@ -32,6 +30,7 @@ st.markdown(
     "<p style='text-align:center; color:gray;'>API & JSON based Language Translator</p>",
     unsafe_allow_html=True
 )
+
 st.markdown("---")
 
 # -------------------- LANGUAGE OPTIONS --------------------
@@ -68,13 +67,6 @@ def translate_text(text, src, tgt):
     data = response.json()
     return data["responseData"]["translatedText"]
 
-# -------------------- TEXT TO SPEECH (MULTI‑LANGUAGE) --------------------
-def speak_text(text, lang):
-    tts = gTTS(text=text, lang=lang)
-    tts.save("voice.mp3")
-    playsound("voice.mp3")
-    os.remove("voice.mp3")
-
 # -------------------- TRANSLATE BUTTON --------------------
 if st.button("🔁 Translate"):
     if input_text.strip() == "":
@@ -105,17 +97,10 @@ if st.session_state.translated_text:
         unsafe_allow_html=True
     )
 
-    st.write("")
-
-    if st.button("🗣 Speak Translation"):
-        speak_text(
-            st.session_state.translated_text,
-            LANGUAGES[target_lang]
-        )
-
 # -------------------- FOOTER --------------------
 st.markdown("---")
 st.markdown(
     "<p style='text-align:center; font-size:12px;'>School Exhibition Project • APIs • JSON • Python</p>",
     unsafe_allow_html=True
 )
+
