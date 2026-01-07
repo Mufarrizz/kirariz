@@ -4,16 +4,51 @@ import requests
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
     page_title="KIRARIZ Translator",
-    page_icon="🌍",
+    page_icon="🌸",
     layout="centered"
 )
 
-# -------------------- BACKGROUND COLOR --------------------
+# -------------------- GLOBAL STYLES (FIX DARK MODE ISSUE) --------------------
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #ffe6f0;
+    }
+
+    /* Text input & text area */
+    textarea, input {
+        background-color: #ffd6e8 !important;
+        color: #000000 !important;
+        border-radius: 10px !important;
+        border: 1px solid #ff9fc9 !important;
+    }
+
+    /* Select boxes */
+    div[data-baseweb="select"] > div {
+        background-color: #ffd6e8 !important;
+        color: black !important;
+        border-radius: 10px !important;
+        border: 1px solid #ff9fc9 !important;
+    }
+
+    /* Dropdown text */
+    div[data-baseweb="select"] span {
+        color: black !important;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        background-color: #ff9fc9;
+        color: black;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .stButton > button:hover {
+        background-color: #ff7fb3;
+        color: black;
     }
     </style>
     """,
@@ -25,15 +60,11 @@ if "translated_text" not in st.session_state:
     st.session_state.translated_text = ""
 
 # -------------------- TITLE --------------------
+st.markdown("<h1 style='text-align:center;'>🌍 KIRARIZ Translator</h1>", unsafe_allow_html=True)
 st.markdown(
-    "<h1 style='text-align:center;'>🌍 KIRARIZ Translator</h1>",
+    "<p style='text-align:center; color:#555;'>Simple Language Translator • Exhibition Demo</p>",
     unsafe_allow_html=True
 )
-st.markdown(
-    "<p style='text-align:center; color:gray;'>Text-based Language Translator</p>",
-    unsafe_allow_html=True
-)
-
 st.markdown("---")
 
 # -------------------- LANGUAGE OPTIONS --------------------
@@ -90,8 +121,9 @@ if st.button("🔁 Translate"):
         )
 
 # -------------------- OUTPUT --------------------
-if st.session_state.translated_text != "":
-    st.markdown("### 📄 Translated Text")
+if st.session_state.translated_text:
+    st.markdown("### ✨ Translated Text")
+
     st.markdown(
         f"""
         <div style="
@@ -109,14 +141,13 @@ if st.session_state.translated_text != "":
     )
 
     st.markdown(
-        "<span style='color:#aa0066; font-size:14px;'>🎤 Voice feature coming soon</span>",
+        "<p style='margin-top:10px; color:#777;'>🔊 Voice feature coming soon</p>",
         unsafe_allow_html=True
     )
 
 # -------------------- FOOTER --------------------
 st.markdown("---")
 st.markdown(
-    "<p style='text-align:center; font-size:12px;'>School Exhibition Project • APIs • Python • Streamlit</p>",
+    "<p style='text-align:center; font-size:12px;'>KIRARIZ • School Exhibition Project</p>",
     unsafe_allow_html=True
 )
-
