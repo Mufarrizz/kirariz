@@ -97,10 +97,13 @@ if st.session_state.translated_text:
         unsafe_allow_html=True
     )
 
+if st.session_state.translated_text:
+
 # -------------------- FOOTER --------------------
 st.markdown("---")
 st.markdown(
     "<p style='text-align:center; font-size:12px;'>School Exhibition Project • APIs • JSON • Python</p>",
     unsafe_allow_html=True
 )
+
 
