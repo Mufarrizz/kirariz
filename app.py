@@ -25,9 +25,12 @@ if "translated_text" not in st.session_state:
     st.session_state.translated_text = ""
 
 # -------------------- TITLE --------------------
-st.markdown("<h1 style='text-align:center;'>🌍 KIRARIZ Translator</h1>", unsafe_allow_html=True)
 st.markdown(
-    "<p style='text-align:center; color:gray;'>API & JSON based Language Translator</p>",
+    "<h1 style='text-align:center;'>🌍 KIRARIZ Translator</h1>",
+    unsafe_allow_html=True
+)
+st.markdown(
+    "<p style='text-align:center; color:gray;'>Text-based Language Translator</p>",
     unsafe_allow_html=True
 )
 
@@ -44,10 +47,18 @@ LANGUAGES = {
 col1, col2 = st.columns(2)
 
 with col1:
-    source_lang = st.selectbox("Source Language", list(LANGUAGES.keys()), index=0)
+    source_lang = st.selectbox(
+        "Source Language",
+        list(LANGUAGES.keys()),
+        index=0
+    )
 
 with col2:
-    target_lang = st.selectbox("Target Language", list(LANGUAGES.keys()), index=1)
+    target_lang = st.selectbox(
+        "Target Language",
+        list(LANGUAGES.keys()),
+        index=1
+    )
 
 # -------------------- INPUT TEXT --------------------
 input_text = st.text_area(
@@ -79,8 +90,8 @@ if st.button("🔁 Translate"):
         )
 
 # -------------------- OUTPUT --------------------
-if st.session_state.translated_text:
-    st.markdown("### 🔊 Translated Text")
+if st.session_state.translated_text != "":
+    st.markdown("### 📄 Translated Text")
     st.markdown(
         f"""
         <div style="
@@ -97,13 +108,15 @@ if st.session_state.translated_text:
         unsafe_allow_html=True
     )
 
-if st.session_state.translated_text:
+    st.markdown(
+        "<span style='color:#aa0066; font-size:14px;'>🎤 Voice feature coming soon</span>",
+        unsafe_allow_html=True
+    )
 
 # -------------------- FOOTER --------------------
 st.markdown("---")
 st.markdown(
-    "<p style='text-align:center; font-size:12px;'>School Exhibition Project • APIs • JSON • Python</p>",
+    "<p style='text-align:center; font-size:12px;'>School Exhibition Project • APIs • Python • Streamlit</p>",
     unsafe_allow_html=True
 )
-
 
